@@ -1,0 +1,10 @@
+(sym_lib_table
+  (lib (name "FemaleSMAConnector")(type "KiCad")(uri "${KIPRJMOD}/libraries/Female_SMA_Connector/901-10512-1.kicad_sym")(options "")(descr ""))
+  (lib (name "PhaseShifter")(type "KiCad")(uri "${KIPRJMOD}/libraries/PhaseShifter.kicad_sym")(options "")(descr ""))
+  (lib (name "PowerCombiner")(type "KiCad")(uri "${KIPRJMOD}/libraries/PowerCombiner.kicad_sym")(options "")(descr ""))
+  (lib (name "LNA")(type "KiCad")(uri "${KIPRJMOD}/libraries/LNA.kicad_sym")(options "")(descr ""))
+  (lib (name "RFChoke")(type "KiCad")(uri "${KIPRJMOD}/libraries/RFChoke.kicad_sym")(options "")(descr ""))
+  (lib (name "DAC")(type "KiCad")(uri "${KIPRJMOD}/libraries/AD5504BRUZ/AD5504BRUZ.kicad_sym")(options "")(descr ""))
+  (lib (name "DigikeyRFModules")(type "Legacy")(uri "${KIPRJMOD}/libraries/digikey-kicad-library/digikey-symbols/dk_RF-Transceiver-Modules.lib")(options "")(descr ""))
+  (lib (name "DigikeyDiodes")(type "Legacy")(uri "${KIPRJMOD}/libraries/digikey-kicad-library/digikey-symbols/dk_Diodes-Bridge-Rectifiers.lib")(options "")(descr ""))
+)

@@ -1,0 +1,130 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{listings}
+
+\title{6.S092 Track 2 Project: Amateur Radio Satellite Phased Array Receiver}
+\author{Oliver Trevor}
+\institute{MIT}
+\date{January 25, 2023}
+
+\begin{document}
+    \frame{\titlepage}
+
+    \begin{frame}
+        \frametitle{Background}
+
+        \begin{itemize}
+            \item There are various satellites in orbit with amateur radio payloads, usually repeaters and sometimes digital transponders
+
+            \item Licensed amateurs can use these for communications or experimentation, which is cool because it's space
+
+            \item Since the duplexer (cavity filters) that ground-based repeaters carry is too large for a CubeSat, these satellites usually uplink on VHF and downlink on UHF (sometimes this is reversed)
+
+            \item Ham radio operators usually use motorized mounts or manual, by-hand tracking to aim an antenna at a satellite to pick up its weak downlink signal
+
+            \item Receiving signals is possible with even a handheld radio, but the antenna must be very directional
+
+            \item Modern electronically-steered antenna systems work by changing the phase relationships between RF signals to create constructive interference in a desired direction and destructive interference in other directions
+        \end{itemize}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Problem Overview}
+        \begin{itemize}
+            \item Amateur radio satellites are a long way away and have very low-power transmitters
+
+            \item Existing solutions for communicating with ham radio satellites usually involve mechanically-steered antennae, which are prone to failure and have limited tracking speed (and no ability to ``hunt" for a signal by sweeping the approximate region of sky)
+
+            \item Even modern ham radio mostly does not use phased arrays, except in either fixed (not steerable) setups like the Walker roof EME array or in very simplistic designs like ``HF noise cancellers"
+
+            \item I would like to build an electronically-steered phased array for receiving from ham radio satellites on UHF using an ordinary rig (no software-defined radios)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Basic RF Topology}
+        \begin{itemize}
+            \item Four Yagi antennas, probably home-made, arranged in a square and tuned for UHF (not part of PCB)
+
+            \item Four coax cables (not part of PCB)
+
+            \item Four edge-mount through-hole (for strength) female SMA connectors
+
+            \item (Possibly) four filters for the ham UHF band (420-450 MHz)
+
+            \item Four LNAs with bias tees for power
+
+            \item Four voltage-controlled phase-shifters
+
+            \item RF power combiner
+
+            \item (Possibly) RF attenuator
+
+            \item Edge-mount through-hole female SMA connector for cable to radio
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Non-RF Things}
+        \begin{itemize}
+            \item Power circuitry to convert 13.8 V (standard for ham radio) down to 5 V for the LNAs, possibly also to a stable reference voltage for the DACs
+
+            \item Microcontroller for electronic phase steering
+
+            \item Four DACs for phase control signals
+
+            \item Four op-amps for phase control signals
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Expected Difficulties}
+
+        \begin{itemize}
+            \item Literally everything because this is RF
+
+            \item Impedance-matching traces
+
+            \item Preventing MCU and power circuitry from coupling interference into RF things
+
+            \item Preventing nearby ham transmitter from crashing/damaging MCU with induced fields
+
+            \item Routing control and power traces without interrupting RF traces
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Questions}
+
+        \begin{itemize}
+            \item Choice of capacitor and inductor values for LNA bias-tee circuit
+
+            \item Do I need filtering on the input for the LNAs to work properly, or can I just let the radio at the end do the filtering? If I need filtering, should it be implemented as discrete components on the PCB or as a module?
+
+            \item How do I down-regulate 13.8 VDC to 5 VDC without creating RF noise? / Is the RF noise from a switching converter a problem?
+
+            \item Some footprints for Mini-circuits modules have lots of vias in their grounds--why? Should I use those?
+
+            \item Do I need an attenuator at the end to reduce the combined power to avoid damaging the radio?
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Questions}
+
+        \begin{itemize}
+            \item What microcontroller should I use (this choice may be dictated more by supply than by choice...)? Should the DACs be integrated with it or separate?
+
+            \item How do I make sure the DACs output voltage will be stable/reliable when the power voltage is not (i. e. what voltage reference should I use)?
+
+            \item Do I need RF shielding boxes around things?
+
+            \item Should the DAC outputs / bias voltages have some kind of bypass capacitance on them to stop RF affecting them?
+
+            \item Is it a good idea to have a USB-serial converter for talking to the MCU, or is that going to be unavoidably noisy?
+        \end{itemize}
+    \end{frame}
+
+\end{document}

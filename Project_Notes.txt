@@ -1,0 +1,37 @@
+RF chain:
+    - 4 female SMA connectors: https://www.digikey.com/en/products/detail/amphenol-rf-division/901-10512-1/6051064
+    - LNAs: https://www.minicircuits.com/WebStore/dashboard.html?model=PMA-5453%2B
+    - Phase shifters: https://www.minicircuits.com/WebStore/dashboard.html?model=JSPHS-661%2B
+    - Power combiner: https://www.minicircuits.com/WebStore/dashboard.html?model=SCPS-4-62%2B
+    - Attenuator?
+    - 1 female SMA connector
+
+Ham VHF band: 144-148 MHz
+Ham UHF band: 420-450 MHz
+
+Questions:
+    - Do I need more than 180 degrees shift?
+    - EP pin connections on the LNAs?
+    - Choice of capacitors and inductors for the LNAs?
+    - Filtering?
+    - How to get 5V from 13.8V without creating RF noise?
+    - Footprints with ground vias or not?
+    - Need an attenuator to avoid damaging radio?
+    - How to do DACs and MCU for bias voltages?
+    - RF shielding boxes?
+
+New questions:
+    - Thermal reliefs on ground vias?
+    - Adding RC lowpass filter to DAC outputs?
+
+DR:
+    - Problem to solve
+    - How you're going to do it -- circuit topology
+
+Parts:
+    - 10 uF caps: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B106KOQNNNE/3888530
+    - 0.1 uF caps: https://www.digikey.com/en/products/detail/kyocera-avx/08055C104K4T4A/1602855
+    - 390 nH inductors: https://www.digikey.com/en/products/detail/abracon-llc/AISC-0805-R39J-T/2335188
+    - 681 Ohm resistors: https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCP0805FTD681R/2240225
+    - 10 kOhm resistors: https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676
+    - DAC: https://www.digikey.com/en/products/detail/analog-devices-inc/AD5504BRUZ/2180874
